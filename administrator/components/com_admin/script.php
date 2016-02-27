@@ -406,18 +406,29 @@ class JoomlaInstallerScript
 	public function deleteUnexistingFiles()
 	{
 		$files = array(
+			// Joomla 1.6 - 1.7 - 2.5
 			'/libraries/cms/cmsloader.php',
+			'/libraries/joomla/database/databaseexception.php',
+			'/libraries/joomla/database/databasequery.php',
+			'/libraries/joomla/environment/response.php',
 			'/libraries/joomla/form/fields/templatestyle.php',
 			'/libraries/joomla/form/fields/user.php',
 			'/libraries/joomla/form/fields/menu.php',
 			'/libraries/joomla/form/fields/helpsite.php',
+			'/libraries/joomla/github/gists.php',
+			'/libraries/joomla/github/issues.php',
+			'/libraries/joomla/github/pulls.php',
+			'/libraries/joomla/log/logentry.php',
 			'/administrator/components/com_admin/sql/updates/mysql/1.7.0.sql',
 			'/administrator/components/com_admin/sql/updates/sqlsrv/2.5.2-2012-03-05.sql',
 			'/administrator/components/com_admin/sql/updates/sqlsrv/2.5.3-2012-03-13.sql',
 			'/administrator/components/com_admin/sql/updates/sqlsrv/index.html',
+			'/administrator/components/com_content/models/fields/filters.php',
 			'/administrator/components/com_users/controllers/config.php',
+			'/administrator/components/com_users/helpers/levels.php',
 			'/administrator/language/en-GB/en-GB.plg_system_finder.ini',
 			'/administrator/language/en-GB/en-GB.plg_system_finder.sys.ini',
+			'/administrator/modules/mod_quickicon/tmpl/default_button.php',
 			'/media/editors/tinymce/jscripts/tiny_mce/plugins/advhr/editor_plugin_src.js',
 			'/media/editors/tinymce/jscripts/tiny_mce/plugins/advimage/editor_plugin_src.js',
 			'/media/editors/tinymce/jscripts/tiny_mce/plugins/advlink/editor_plugin_src.js',
@@ -1387,7 +1398,7 @@ class JoomlaInstallerScript
 			'/libraries/vendor/symfony/yaml/Symfony/Component/Yaml/Exception/ParseException.php',
 			'/libraries/vendor/symfony/yaml/Symfony/Component/Yaml/Exception/RuntimeException.php',
 			'/administrator/components/com_tags/helpers/tags.php',
-			// Joomla 3.6.0
+			'/libraries/vendor/phpmailer/phpmailer/extras/class.html2text.php',
 			'/libraries/joomla/document/error/error.php',
 			'/libraries/joomla/document/feed/feed.php',
 			'/libraries/joomla/document/html/html.php',
@@ -1484,8 +1495,6 @@ class JoomlaInstallerScript
 			'/libraries/vendor/symfony/yaml/Symfony/Component',
 			'/libraries/vendor/symfony/yaml/Symfony',
 			'/administrator/components/com_tags/helpers',
-			'/libraries/vendor/phpmailer/phpmailer/extras/class.html2text.php',
-			// Joomla 3.6.0
 			'/libraries/joomla/document/error',
 			'/libraries/joomla/document/image',
 			'/libraries/joomla/document/json',
@@ -1622,13 +1631,13 @@ class JoomlaInstallerScript
 				case 'pdomysql':
 				case 'mysql':
 				case 'mysqli':
-					$db->truncateTable($db->qn('#__sessions'));
+					$db->truncateTable($db->qn('#__session'));
 					break;
 
 				// Non-MySQL databases, use a simple DELETE FROM query
 				default:
 					$query = $db->getQuery(true)
-						->delete($db->qn('#__sessions'));
+						->delete($db->qn('#__session'));
 					$db->setQuery($query)->execute();
 					break;
 			}

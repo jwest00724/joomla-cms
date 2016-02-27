@@ -4692,6 +4692,9 @@ a.badge:focus {
 .affix {
 	position: fixed;
 }
+@-ms-viewport {
+	width: device-width;
+}
 .hidden {
 	display: none;
 	visibility: hidden;
@@ -7126,6 +7129,9 @@ h6 {
 .breadcrumb {
 	margin: 10px 0;
 }
+.breadcrumb > li {
+	color: #999;
+}
 .img_caption .left {
 	float: left;
 	margin-right: 1em;
@@ -7510,4 +7516,17 @@ body.modal-open {
 }
 #finder-search .in.collapse {
 	overflow: visible;
+}
+.well select,
+.well .chzn-container {
+	max-width: 100%;
+}
+@media (max-width: 767px) {
+	.field-media-wrapper .modal .modal-body {
+		padding: 5px 0;
+	}
+}
+.modal-body {
+	-webkit-overflow-scrolling: touch;
+	overflow-y: auto !important;
 }
